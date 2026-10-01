@@ -6,12 +6,12 @@ app = Flask(__name__)
 
 @app.route("/execute")
 def execute_command():
-    command = request.args.get("command", "")
+    user_argument = request.args.get("argument", "")
 
-    # Intentionally vulnerable code.
     subprocess.run(
-        command,
-        shell=True
+        ["echo", user_argument],
+        shell=False,
+        check=True
     )
 
     return {"status": "executed"}

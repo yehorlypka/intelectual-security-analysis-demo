@@ -11,12 +11,12 @@ def find_user():
     connection = sqlite3.connect(":memory:")
     cursor = connection.cursor()
 
-    # Intentionally vulnerable code.
+    # Parameterized query prevents SQL injection.
     query = (
         "SELECT * FROM users "
-        "WHERE username = '" + username + "'"
+        "WHERE username = ?"
     )
 
-    cursor.execute(query)
+    cursor.execute(query, (username,))
 
     return {"users": cursor.fetchall()}
