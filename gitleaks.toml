@@ -1,0 +1,16 @@
+title = "Security Analysis Demo"
+
+[extend]
+useDefault = true
+
+
+[[rules]]
+id = "demo-hardcoded-token"
+
+description = "Detects the intentionally fake token used in the security analysis demonstration."
+
+regex = '''DEMO_SECRET_[A-Za-z0-9]{12}'''
+
+keywords = [
+    "DEMO_SECRET_"
+]
